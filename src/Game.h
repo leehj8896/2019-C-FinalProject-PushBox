@@ -21,7 +21,6 @@ public:
     void gameStart();
     void setMaps();
     void setPlayer();
-    void backGround();
     void move(const int direction);
     void walk(const int y, const int x, const int nextY, const int nextX);
     void push(const int y, const int x, const int nextY, const int nextX, const int afterY, const int afterX);
