@@ -97,14 +97,12 @@ void Game::move(const int direction)
     }
     else if (direction == KEY_F(2))
     {
-	playerPositions.clear();
+        playerPositions.clear();
         setMaps();
-	setPlayer();
-	this->stepCount = 0;
+        setPlayer();
+        this->stepCount = 0;
         this->pushCount = 0;
     }
-
-
 
     //다음칸이 벽이 아닐 때
     if (maps[currentStage][nextY][nextX] != 1)
@@ -118,9 +116,6 @@ void Game::move(const int direction)
             if (maps[currentStage][afterY][afterX] == 0 || maps[currentStage][afterY][afterX] == 3)
             push(y, x, nextY, nextX, afterY, afterX);
 
-        //원래 있던 자리가 목적지인지 체크하여 변경
-        if (checkGoal(y, x))
-            maps[currentStage][y][x] = 3;
         //목적지에 모두 상자가 차있는지 체크
         if (checkSuccess())
             nextStage();
@@ -135,6 +130,10 @@ void Game::walk(const int y, const int x, const int nextY, const int nextX)
     playerPositions[currentStage].first = nextY;
     playerPositions[currentStage].second = nextX;
     stepCount++;
+
+    //원래 있던 자리가 목적지인지 체크하여 변경
+    if (checkGoal(y, x))
+        maps[currentStage][y][x] = 3;
 }
 
 //앞에 상자가 있을 경우 밀면서 한 칸 앞으로 가는 함수
@@ -147,6 +146,10 @@ void Game::push(const int y, const int x, const int nextY, const int nextX, cons
     playerPositions[currentStage].second = nextX;
     stepCount++;
     pushCount++;
+
+    //원래 있던 자리가 목적지인지 체크하여 변경
+    if (checkGoal(y, x))
+        maps[currentStage][y][x] = 3;
 }
 
 //다음 스테이지로 가는 함수
@@ -188,44 +191,4 @@ bool Game::checkAllSuccess() const
         if (finished[i] == false)
             return false;
     return true;
-}
-void Game::backGround(){
-	initscr();
-   	resize_term(30, 50);
-	start_color();
-	init_pair(1, COLOR_YELLOW, COLOR_BLACK);
-	bkgd(COLOR_PAIR(1));
-	attron(COLOR_PAIR(1));
-	border('*', '*', '*', '*', '*', '*', '*', '*');
-	attroff(COLOR_PAIR(1));
-	mvprintw(1, 20, "PUSHING");
-	mvprintw(3, 8, "bbbbbbb     oooooo   xxx     xxx");
-	mvprintw(4, 8, "bb    bb   ooo  ooo   xxx   xxx");
-	mvprintw(5, 8, "bb    bb   oo    oo    xxx xxx");
-	mvprintw(6, 8, "bbbbbbb    oo    oo     xxxxx");
-	mvprintw(7, 8, "bb    bb   oo    oo    xxx xxx");
-	mvprintw(8, 8, "bb    bb   ooo  ooo   xxx   xxx");
-	mvprintw(9, 8, "bbbbbbb     oooooo   xxx     xxx");
-
-	mvprintw(12, 12, "F1 = quit  F2= reset");
-
-	//현재 발자국 수, 상자 민 횟수 그리기
-        mvprintw(13, 12, "steps: %d", getStepCount());
-        mvprintw(13, 23, "pushes: %d", getPushCount());
-
-	//맵 그리기
- 	for (int j = 0; j < getMaps()[getCurrentStage()].size(); j++)
-        {
-            for (int k = 0; k < getMaps()[getCurrentStage()][j].size(); k++)
-            {
-		if(getMaps()[getCurrentStage()][j][k] == 5)
-			mvprintw(20 + j, 20 + k, "#");
-		else if(getMaps()[getCurrentStage()][j][k] == 4)
-			mvprintw(20 + j, 20 + k, " ");
-		else
-                mvprintw(20 + j, 20 + k, "%d", getMaps()[getCurrentStage()][j][k]);
-
-            }
-        }
-	refresh();
 }
