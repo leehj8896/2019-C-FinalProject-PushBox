@@ -1,3 +1,5 @@
+<<main.cpp 파일>>
+
 int main()
 {
     initscr();
@@ -32,4 +34,34 @@ int main()
     refresh();    
     attroff(COLOR_PAIR(1));
     endwin();
+}
+
+<<Game.h 파일>>
+
+int Game::getCurrentStage() { return currentStage; }
+vector<vector<vector<int>>> Game::getMaps() { return maps; }
+
+
+<<Game.cpp 파일>>
+
+void Game::gameStart()
+{
+    setMaps();
+}
+
+//3차원 벡터에 maps.txt를 가져와 데이터를 저장하는 함수
+void Game::setMaps()
+{
+    int numOfRows, numOfCols;
+    ifstream is("maps.txt");
+    is >> numOfStages;
+    this->maps.assign(numOfStages, vector<vector<int>>());
+    for (int i = 0; i < numOfStages; i++)
+    {
+        is >> numOfRows >> numOfCols;
+        this->maps[i].assign(numOfRows, vector<int>(numOfCols, -1));
+        for (int j = 0; j < numOfRows; j++)
+            for (int k = 0; k < numOfCols; k++)
+                is >> this->maps[i][j][k];
+    }
 }
