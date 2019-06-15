@@ -51,14 +51,7 @@ void Game::setPlayer()
 
     for (int i = 0; i < numOfStages; i++)
     {
-        for (int j = 0; j < maps[i].size(); j++)
-        {
-            for (int k = 0; k < maps[i][j].size(); k++)
-            {
-                if (j == playerPositions[i].first && k == playerPositions[i].second)
-                    maps[i][j][k] = 5;
-            }
-        }
+        maps[i][playerPositions[i].first][playerPositions[i].second] = 5;
     }
 }
 
