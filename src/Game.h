@@ -28,4 +28,5 @@ public:
     void nextStage();
     bool checkSuccess() const;
     bool checkAllSuccess() const;
+    void reset();
 };

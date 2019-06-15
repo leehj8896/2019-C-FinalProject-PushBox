@@ -35,6 +35,7 @@ void Game::setMaps()
             }
         }
     }
+    is.close();
 }
 
 //맵 위에 플레이어를 위치시킨다.
@@ -50,9 +51,9 @@ void Game::setPlayer()
     }
 
     for (int i = 0; i < numOfStages; i++)
-    {
         maps[i][playerPositions[i].first][playerPositions[i].second] = 5;
-    }
+    
+    is.close();
 }
 
 void Game::move(const int direction)
@@ -87,14 +88,6 @@ void Game::move(const int direction)
         nextX = x + 1;
         afterY = y;
         afterX = x + 2;
-    }
-    else if (direction == KEY_F(2))
-    {
-        playerPositions.clear();
-        setMaps();
-        setPlayer();
-        this->stepCount = 0;
-        this->pushCount = 0;
     }
 
     //다음칸이 벽이 아닐 때
@@ -184,4 +177,15 @@ bool Game::checkAllSuccess() const
         if (finished[i] == false)
             return false;
     return true;
+}
+
+void Game::reset()
+{
+    
+    //this->playerPositions.clear();
+    //setMaps();
+    //setPlayer();
+    //this->stepCount = 0;
+    //this->pushCount = 0;
+    
 }

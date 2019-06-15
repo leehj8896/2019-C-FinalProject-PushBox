@@ -55,9 +55,11 @@ int main()
         //입력받아 움직이기
         int input = getch();
 
-        //F1 = Quit
         if (input == KEY_F(1))
             break;
+        else if(input==KEY_F(2))
+            game.reset();
+
         game.move(input);
 
         //화면 지우기
