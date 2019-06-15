@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
     initscr();
-    resize_term(40, 100);
+    resize_term(40, 46);
     keypad(stdscr, TRUE);
     curs_set(0);
     noecho();
@@ -31,11 +31,11 @@ int main()
         mvprintw(7, 8, "bb    bb   oo    oo    xxx xxx");
         mvprintw(8, 8, "bb    bb   ooo  ooo   xxx   xxx");
         mvprintw(9, 8, "bbbbbbb     oooooo   xxx     xxx");
-        mvprintw(12, 12, "F1 = quit  F2= reset");
+        mvprintw(11, 12, "F1 = quit  F2= reset");
 
         //현재 발자국 수, 상자 민 횟수 그리기
-        mvprintw(13, 12, "steps: %d", game.getStepCount());
-        mvprintw(13, 23, "pushes: %d", game.getPushCount());
+        mvprintw(12, 12, "steps: %d", game.getStepCount());
+        mvprintw(12, 23, "pushes: %d", game.getPushCount());
 
         //맵 그리기
         for (int j = 0; j < game.getMaps()[game.getCurrentStage()].size(); j++)
@@ -43,11 +43,11 @@ int main()
             for (int k = 0; k < game.getMaps()[game.getCurrentStage()][j].size(); k++)
             {
                 if (game.getMaps()[game.getCurrentStage()][j][k] == 5)
-                    mvprintw(20 + j, 20 + k, "#");
+                    mvprintw(14 + j, 14 + k, "#");
                 else if (game.getMaps()[game.getCurrentStage()][j][k] == 4)
-                    mvprintw(20 + j, 20 + k, " ");
+                    mvprintw(14 + j, 14 + k, " ");
                 else
-                    mvprintw(20 + j, 20 + k, "%d", game.getMaps()[game.getCurrentStage()][j][k]);
+                    mvprintw(14 + j, 14 + k, "%d", game.getMaps()[game.getCurrentStage()][j][k]);
             }
         }
         refresh();
