@@ -38,6 +38,8 @@ int main()
         //현재 발자국 수, 상자 민 횟수 그리기
         mvprintw(12, 12, "steps: %d", game.getStepCount());
         mvprintw(12, 23, "pushes: %d", game.getPushCount());
+        mvprintw(14, 17, "<스테이지%d>", game.getCurrentStage() + 1);
+
 
         //맵 그리기
         for (int j = 0; j < game.getMaps()[game.getCurrentStage()].size(); j++)
@@ -46,17 +48,17 @@ int main()
             {
                 int num = game.getMaps()[game.getCurrentStage()][j][k];
                 if (num == 0)
-                    mvprintw(14 + j, 14 + k, " ");
+                    mvprintw(15 + j, 15 + k, " ");
                 else if (num == 1)
-                    mvprintw(14 + j, 14 + k, "\u2B1B");
+                    mvprintw(15 + j, 15 + k, "\u2B1B");
                 else if (num == 2)
-                    mvprintw(14 + j, 14 + k, "#");
+                    mvprintw(15 + j, 15 + k, "#");
                 else if (num == 3)
-                    mvprintw(14 + j, 14 + k, "?");
+                    mvprintw(15 + j, 15 + k, "?");
                 else if (num == 4)
-                    mvprintw(14 + j, 14 + k, " ");
+                    mvprintw(15 + j, 15 + k, " ");
                 else if (num == 5)
-                    mvprintw(14 + j, 14 + k, "O");
+                    mvprintw(15 + j, 15 + k, "O");
             }
         }
         refresh();
