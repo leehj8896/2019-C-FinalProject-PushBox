@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
     initscr();
-    resize_term(40, 46);
+    resize_term(40, 48);
     keypad(stdscr, TRUE);
     curs_set(0);
     noecho();
@@ -31,7 +31,7 @@ int main()
         mvprintw(7, 8, "bb    bb   oo    oo    xxx xxx");
         mvprintw(8, 8, "bb    bb   ooo  ooo   xxx   xxx");
         mvprintw(9, 8, "bbbbbbb     oooooo   xxx     xxx");
-        mvprintw(11, 12, "F1 = quit  F2= reset");
+        mvprintw(11, 12, "q = quit  r= reset");
 
         //현재 발자국 수, 상자 민 횟수 그리기
         mvprintw(12, 12, "steps: %d", game.getStepCount());
@@ -55,9 +55,9 @@ int main()
         //입력받아 움직이기
         int input = getch();
 
-        if (input == KEY_F(1))
+        if (input == 'q')
             break;
-        else if(input==KEY_F(2))
+        else if(input == 'r')
             game.reset();
 
         game.move(input);
