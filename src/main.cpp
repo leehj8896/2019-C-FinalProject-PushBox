@@ -59,8 +59,8 @@ int main()
             break;
         else if(input == 'r')
             game.reset();
-
-        game.move(input);
+        else
+            game.move(input);
 
         //화면 지우기
         clear();
