@@ -180,12 +180,10 @@ bool Game::checkAllSuccess() const
 }
 
 void Game::reset()
-{
-    
+{    
     this->playerPositions.clear();
     setMaps();
     setPlayer();
     this->stepCount = 0;
-    this->pushCount = 0;
-    
+    this->pushCount = 0;    
 }

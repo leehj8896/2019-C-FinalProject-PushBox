@@ -1,3 +1,4 @@
+#include <clocale>
 #include <ncurses.h>
 #include <fstream>
 #include <iostream>
@@ -6,6 +7,7 @@ using namespace std;
 
 int main()
 {
+    setlocale(LC_ALL, "");
     initscr();
     resize_term(40, 48);
     keypad(stdscr, TRUE);
@@ -42,12 +44,19 @@ int main()
         {
             for (int k = 0; k < game.getMaps()[game.getCurrentStage()][j].size(); k++)
             {
-                if (game.getMaps()[game.getCurrentStage()][j][k] == 5)
-                    mvprintw(14 + j, 14 + k, "#");
-                else if (game.getMaps()[game.getCurrentStage()][j][k] == 4)
+                int num = game.getMaps()[game.getCurrentStage()][j][k];
+                if (num == 0)
                     mvprintw(14 + j, 14 + k, " ");
-                else
-                    mvprintw(14 + j, 14 + k, "%d", game.getMaps()[game.getCurrentStage()][j][k]);
+                else if (num == 1)
+                    mvprintw(14 + j, 14 + k, "\u2B1B");
+                else if (num == 2)
+                    mvprintw(14 + j, 14 + k, "#");
+                else if (num == 3)
+                    mvprintw(14 + j, 14 + k, "?");
+                else if (num == 4)
+                    mvprintw(14 + j, 14 + k, " ");
+                else if (num == 5)
+                    mvprintw(14 + j, 14 + k, "O");
             }
         }
         refresh();
@@ -57,7 +66,7 @@ int main()
 
         if (input == 'q')
             break;
-        else if(input == 'r')
+        else if (input == 'r')
             game.reset();
         else
             game.move(input);
