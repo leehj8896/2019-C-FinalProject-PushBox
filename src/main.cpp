@@ -33,7 +33,7 @@ int main()
         mvprintw(7, 8, "bb    bb   oo    oo    xxx xxx");
         mvprintw(8, 8, "bb    bb   ooo  ooo   xxx   xxx");
         mvprintw(9, 8, "bbbbbbb     oooooo   xxx     xxx");
-        mvprintw(11, 12, "q = quit  r= reset");
+        mvprintw(11, 12, "Q = Quit   R = Reset");
 
         //현재 발자국 수, 상자 민 횟수 그리기
         mvprintw(12, 12, "steps: %d", game.getStepCount());
