@@ -50,7 +50,7 @@ int main()
                 if (num == 0)
                     mvprintw(15 + j, 15 + k, " ");
                 else if (num == 1)
-                    mvprintw(15 + j, 15 + k, "\u2B1B");
+                    mvprintw(15 + j, 15 + k, "+");
                 else if (num == 2)
                     mvprintw(15 + j, 15 + k, "#");
                 else if (num == 3)
