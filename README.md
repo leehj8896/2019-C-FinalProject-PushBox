@@ -1,8 +1,8 @@
-# 2019-C-FinalProject-PushBox
+# - 2019-C-FinalProject-PushBox
 
-## ncurses를 활용한 PushBox게임 구현
+## -  ncurses를 활용한 PushBox게임 구현
 
-## 실행화면
+## - 실행화면
 
 ### [1단계]
 ![step1](./image/step1.png)
